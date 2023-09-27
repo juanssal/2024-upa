@@ -1,7 +1,7 @@
-export default function nosotros() {
-  return (
-<main>
-    <h2>Nosotros</h2>
-</main>
-  )
+export default function Nosotros() {
+    return (
+        <main>
+            <h2>Nosotros</h2>
+        </main>
+    )
 }

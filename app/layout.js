@@ -1,8 +1,12 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-import Link from 'next/link'
+import { Raleway } from 'next/font/google'
+import Navbar from './components/Navbar'
 
-const inter = Inter({ subsets: ['latin'] })
+// Redux stuff
+import { store } from "./redux/app/store.js"
+import { Provider } from 'react-redux'
+
+const raleway = Raleway({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'UPA',
@@ -12,15 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <nav>
-          <Link href="/"><h1>UPA</h1></Link>
-          <Link href="/streaming">Radio en línea</Link>
-          <Link href="/podcasts">Podcasts</Link>
-          <Link href="/proyectos">Proyectos</Link>
-          <Link href="/nosotros">Nosotros</Link>
-        </nav>
+      <body className={raleway.className}>
+        <Navbar />
+        <Provider store={store}>
         {children}
+        </Provider>
+        
       </body>
     </html>
   )
