@@ -47,7 +47,7 @@ export default function StreamingPlayer() {
                     allowtransparency="true"
                 ></iframe>
                 {/* -------- Current song text end ------ */}
-                {/* -------- Current song text end ------ */}
+                
             </div>
         </div>
     )
