@@ -3,11 +3,15 @@ import ListEpisodes from '../listEpisodes'
 
 // TO-DO
 // - Add dynamic text based on user selection for the ListEpisodes prop
+// - Transform params in proper show name format
 
-export default function shows() {
-  return (
-    <main>
-        <ListEpisodes showName={"Params will go here"} showSlug={"la_voz_del_avatar.xml"}/>
-    </main>
-  )
+export default function shows({ params }) {
+    const showId = params.id
+    return (
+        <main>
+        <h2>Esto es: {showId}</h2>
+            <ListEpisodes showName={showId} showSlug={`${showId}.xml`} />
+
+        </main>
+    )
 }

@@ -46,11 +46,11 @@ export default async function ListEpisodes({showName, showSlug}) {
   return (
     <main>
       <h2>{showName}</h2>
-      {episodesArray.map(episode =>
-        <>
+      {episodesArray?.map((episode, index) =>
+        <div key={index}>
           <h3>{episode.title}</h3>
           <p>{episode.description}</p>
-        </>
+        </div>
       )}
     </main>
   )
