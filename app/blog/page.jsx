@@ -5,7 +5,7 @@ export default async function Blog() {
     const posts = await functions.fetchPosts(variables.strapiAPI)
     return (
         <div>
-            {console.log("me posts mate -----------------------------", posts.data[0].attributes.image)}
+            {console.log("me posts mate -----------------------------", posts)}
         </div>
     )
 }

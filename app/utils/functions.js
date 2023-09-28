@@ -4,17 +4,13 @@ export async function getPodcasts(rssAPI, showSlug) {
   var convert = require('xml-js');
   try {
     const res = await fetch(`${rssAPI}${showSlug}`);
-    
+  
     if (!res.ok) {
       throw new Error(`Fetch failed with status: ${res.status}`);
     }
 
     let data = await res.text();
     let episodes = JSON.parse(convert.xml2json(data, { compact: true, spaces: 4 })).rss.channel.item;
-
-    if (!Array.isArray(episodes)) {
-      throw new Error('Episodes is not an array.');
-    }
 
     let episodesArray = episodes.map((episode) => ({
       title: episode.title._text,
@@ -33,6 +29,23 @@ export async function getPodcasts(rssAPI, showSlug) {
 //FETCHES POSTS FROM STRAPI
 export async function fetchPosts(strapiURL) {
   const postsURL = `${strapiURL}/api/posts/?populate=*`;
-  const posts = await fetch(postsURL);
-  return posts.json();
+  try {
+    const posts = await fetch(postsURL);
+    if(!posts) {
+      throw new Error(`Fetch failed with status: ${posts.error}`)
+    }
+
+    const postsData = await posts.json();
+    const postsItems =  await postsData.data
+    const postsArray = await postsItems?.map((post, index) => ({
+      title: post?.attributes?.title,
+      content: post?.attributes?.content,
+      radio: post?.attributes?.radio,
+      image: post?.attributes?.image?.data?.attributes?.url
+    }))
+    return postsArray
+  } catch(error) {
+    console.error('Error', error)
+  }
+  
 }
