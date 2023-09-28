@@ -11,7 +11,6 @@ export default function shows({ params }) {
         <main>
         <h2>Esto es: {showId}</h2>
             <ListEpisodes showName={showId} showSlug={`${showId}.xml`} />
-
         </main>
     )
 }
