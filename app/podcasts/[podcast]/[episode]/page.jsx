@@ -19,7 +19,7 @@ export default async function Episode({ params }) {
       
       <h2>{episode.title}</h2>
       <p>{episode.description}</p>
-      <Player episodeId={episodeId}/>
+      <Player episodeId={episodeId} trackURL={episode.url}/>
       <ListEpisodes showName={showId} showSlug={`${showId}.xml`} url={`podcasts/${showId}`}/>
 
     </main>
