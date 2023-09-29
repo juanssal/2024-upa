@@ -1,8 +1,10 @@
+
 import React from 'react'
 import * as functions from "../../../utils/functions"
 import * as variables from "../../../utils/variables"
 import ListEpisodes from '../../listEpisodes'
 
+import Player from './player'
 
 export default async function Episode({ params }) {
   const episodeId = parseInt(params.episode)
@@ -14,11 +16,12 @@ export default async function Episode({ params }) {
   
   return (
     <main>
-    {console.log("chhhhhheck----------------------------------", Object.values(episode))}
-      <h2>{showId}</h2>
-      <h3>{episode.title}</h3>
+      
+      <h2>{episode.title}</h2>
+      <p>{episode.description}</p>
+      <Player episodeId={episodeId}/>
       <ListEpisodes showName={showId} showSlug={`${showId}.xml`} url={`podcasts/${showId}`}/>
-      {console.log(params.podcast)}
+
     </main>
   )
 }

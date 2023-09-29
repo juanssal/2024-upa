@@ -14,7 +14,6 @@ export default async function ListEpisodes({ showName, showSlug, handleSelectEpi
 
   return (
     <main>
-      {console.log(episodesArray)}
       <h2>{showName}</h2>
       {episodesArray?.map((episode, index) =>
         <div key={index}>
@@ -22,7 +21,6 @@ export default async function ListEpisodes({ showName, showSlug, handleSelectEpi
             <h3>{episode.title}</h3>
           </Link>
 
-          <p>{episode.description}</p>
         </div>
       )}
     </main>

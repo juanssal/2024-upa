@@ -13,7 +13,7 @@ import pauseIcon from "../../assets/pause.svg"
 
 export default function Shows({ params }) {
     const showId = params.podcast
-    return (
+    return (    
         <main>
             <h2>Esto es: {showId}</h2>
             <ListEpisodes showName={showId} showSlug={`${showId}.xml`} url={`podcasts/${showId}`} />
