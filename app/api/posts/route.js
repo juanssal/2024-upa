@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import * as variables from "../../utils/variables"
 
 export async function GET() {
-
-    const postsURL = `${variables.strapiAPI}/api/events/?populate=*`;
+    const postsURL = `${variables.strapiAPI}/api/posts/?populate=*`;
+    
     try {
         const posts = await fetch(postsURL, {
             next: {
@@ -16,7 +16,6 @@ export async function GET() {
 
         const postsData = await posts.json();
         const postsItems = await postsData.data
-        // BELOW ARRAY NEEDS TO BE CORRECTED
         const postsArray = await postsItems?.map((post, index) => ({
             id: index,
             title: post?.attributes?.title,
@@ -32,22 +31,5 @@ export async function GET() {
     } catch (error) {
         console.error('Error', error)
     }
-
-}
-
-// THIS IS TRICKY - need to authorize public create on admin panel, and experiment...
-export async function POST(request) {
-    const event = request.json()
-    const res = await fetch('http://www.radioclasica.com.sv:1337/api/posts/', {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(event)
-    })
-
-    const newEvent = await res.json()
-
-    return NextResponse.json(newEvent, {
-        status: 201
-    })
-
-}
+  }
+  
